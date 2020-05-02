@@ -1,4 +1,4 @@
-"""CPU Functionality"""
+# CPU Functionality
 
 import sys
 
@@ -228,7 +228,6 @@ class CPU:
             self.PC += (IR >> 6) + 1
 
     def run(self):
-        """Run the CPU."""
         while True:
             IR = self.ram_read(self.PC)
             self.operand_a = self.ram_read(self.PC + 1)
@@ -240,6 +239,6 @@ class CPU:
                 self.instructions[binary_op[IR]]()
                 self.move_PC(IR)
             else:
-                print(f"Space dog did not understand that command: {IR}")
+                print(f"Cant understand that command: {IR}")
                 print(self.trace())
                 sys.exit(1)
