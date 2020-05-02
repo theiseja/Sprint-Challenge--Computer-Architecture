@@ -66,3 +66,19 @@ class CPU:
 
         # pushes address of instruction onto the stack
         self.ram[self.reg[SP]] = instruction_address
+
+        # PC has address stored in register
+        register = self.operand_a
+
+        self.PC = self.reg[register]
+
+    def RET(self):
+        self.PC = self.ram[self.reg[SP]]
+
+        self.reg[SP] += 1
+
+    def JMP(self):
+        address = self.reg[self.operand_a]
+
+        print("JUMPING")
+        self.PC = address
