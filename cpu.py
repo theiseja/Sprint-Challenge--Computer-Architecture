@@ -36,7 +36,7 @@ class CPU:
         self.reg = [0] * 8
         self.reg[SP] = 0xF4
         self.operand_a = None
-        self.oeprand_b = None
+        self.operand_b = None
 
         # Internal registers
         self.PC = 0 # Program counter
@@ -109,7 +109,7 @@ class CPU:
 
     def LOAD(self):
         """Loads value to register"""
-        self.reg[self.operand_a] = self.oeprand_b
+        self.reg[self.operand_a] = self.operand_b
 
     def PRINT(self):
         """Prints the value that is currently stored in a register"""
@@ -185,15 +185,15 @@ class CPU:
     def ALU(self, op, reg_a, reg_b):
         """ALU operations"""
         if op == math_op["ADD"]:
-            print("ADDING: ")
+            print("ADDING:")
             self.reg[reg_a] += self.reg[reg_b]
 
         elif op == math_op["SUB"]:
-            print("SUBTRACTING: ")
+            print("SUBTRACTING:")
             self.reg[reg_a] -= self.reg[reg_b]
 
         elif op == math_op["MUL"]:
-            print("MULTIPLYING: ")
+            print("MULTIPLYING:")
             self.reg[reg_a] *= self.reg[reg_b]
 
         elif op == math_op["CMP"]:
@@ -239,6 +239,6 @@ class CPU:
                 self.instructions[binary_op[IR]]()
                 self.move_PC(IR)
             else:
-                print(f"Cant understand that command: {IR}")
+                print(f"Command not found: {IR}")
                 print(self.trace())
                 sys.exit(1)
